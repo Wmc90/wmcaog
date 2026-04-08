@@ -24,4 +24,4 @@ jobs:
       - name: Run Snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk test
+        run: snyk test --file=vulnerabilities/api/composer.lock
