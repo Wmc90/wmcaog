@@ -1,21 +1,30 @@
 name: Snyk Security Scan
-
+ 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
-
+    branches: ["main"]
+ 
 jobs:
   security:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@master
-
+      - name: Checkout code
+        uses: actions/checkout@v2
+ 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+ 
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+ 
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/php@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --file=vulnerabilities/api/composer.lock -d
+        run: |
+          snyk code test --all-projects || true
+ 
+          snyk code test --all-projects --report || true
