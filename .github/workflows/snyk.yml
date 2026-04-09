@@ -18,4 +18,4 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --file=vulnerabilities/api/composer.lock
+          args: --file=vulnerabilities/api/composer.lock -d
