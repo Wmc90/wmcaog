@@ -29,7 +29,8 @@ if( isset( $_POST[ 'Upload' ] ) ) {
         if( !move_uploaded_file( $uploaded_tmp, $target_path ) ) {
             echo '<pre>Your image was not uploaded.</pre>';
         } else {
-            echo "<pre>{$new_name} succesfully uploaded!</pre>";
+		//    echo "<pre>{$new_name} succesfully uploaded!</pre>";
+	echo "<pre>" . htmlspecialchars($new_name, ENT_QUOTES, 'UTF-8') . " succesfully uploaded!</pre>";
         }
     }
 }
