@@ -22,7 +22,10 @@ if( isset( $_REQUEST[ 'Submit' ] ) ) {
     while( $row = mysqli_fetch_assoc( $result ) ) {
         $first = $row["first_name"];
         $last  = $row["last_name"];
-        echo "<pre>ID: {$id}<br />First name: {$first}<br />Surname: {$last}</pre>";
+	//       echo "<pre>ID: {$id}<br />First name: {$first}<br />Surname: {$last}</pre>";
+	echo "<pre>ID: " . htmlspecialchars($id, ENT_QUOTES, 'UTF-8') . 
+   	  "<br />First name: " . htmlspecialchars($first, ENT_QUOTES, 'UTF-8') . 
+     	"<br />Surname: " . htmlspecialchars($last, ENT_QUOTES, 'UTF-8') . "</pre>";
     }
 
     $stmt->close();
